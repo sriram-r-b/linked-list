@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 class node
@@ -11,8 +10,6 @@ public:
 };
 
 node *start = NULL;
-
-
 
 void insert_beg (int x = 0)
 {
@@ -128,13 +125,13 @@ else
 temp=start; 
 start = start->next;
 start->prev=NULL;
-delete start;
+delete temp;
 }
 }
 
 
 void delete_end()
-{node *temp;
+{node *temp,*del;
 if(start == NULL)
 {
 cout<<" Empty list ";
@@ -147,9 +144,10 @@ cout<<" Empty list ";
 	{
 	  temp = temp->next;
 	}
+	del=temp->next;
       temp->next->prev = NULL;
       temp->next = NULL;
-    }
+    delete del;}
 }
 
 void delete_mid (int pos)
@@ -181,7 +179,6 @@ void delete_mid (int pos)
     }
     
 }
-
 
 
 int main ()
