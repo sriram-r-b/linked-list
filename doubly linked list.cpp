@@ -11,6 +11,8 @@ public:
 
 node *start = NULL;
 
+
+
 void insert_beg (int x = 0)
 {
   node *newnode = new node;	// create a node and allocate memory
@@ -140,12 +142,12 @@ cout<<" Empty list ";
   else
     {
       temp = start;
-      while (temp->next->next != NULL)
+      while (temp->next!= NULL)
 	{
 	  temp = temp->next;
 	}
-	del=temp->next;
-      temp->next->prev = NULL;
+	del=temp;
+	temp=temp->prev;
       temp->next = NULL;
     delete del;}
 }
@@ -179,6 +181,42 @@ void delete_mid (int pos)
     }
     
 }
+void monstereat()
+{
+    int totalnodes;
+    node *prev1, *temp, *del;
+    temp = start;
+    totalnodes=total();
+    if (totalnodes>1)
+    {
+        
+    for(int i =1;i<(totalnodes+1);i=i+2)
+    {
+        if (i==1)
+        {
+            temp=temp->next->next;
+            delete_beg();
+            
+            
+        }
+        else if (i==totalnodes)
+        {
+            delete_end();
+        }
+        else
+        {del=temp;
+        prev1=temp->prev;
+         prev1->next = temp->next;
+         prev1->next->prev=prev1;
+         delete del;
+         if(prev1->next->next!=NULL)
+         {temp=prev1->next->next;
+         }
+        }
+    } 
+    }
+    
+}
 
 
 int main ()
@@ -190,6 +228,21 @@ int main ()
   insert_beg (1);
   insert_end (4);
   insert_mid (2,2);
-  traverse ();
+  for (int i=5;i<1001;i++)
+  {
+      insert_end(i);
+  }
+  int t=total();
+  while(t>1)
+  {
+      monstereat();
+      cout<<"\t"<<total()<<"\n";
+      
+      traverse();
+      t=total();
+  }
+  
 }
+
+
 
