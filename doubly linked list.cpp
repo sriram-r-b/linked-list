@@ -196,8 +196,6 @@ void monstereat()
         {
             temp=temp->next->next;
             delete_beg();
-            
-            
         }
         else if (i==totalnodes)
         {
@@ -236,8 +234,7 @@ int main ()
   while(t>1)
   {
       monstereat();
-      cout<<"\t"<<total()<<"\n";
-      
+      //cout<<"\t"<<total()<<"\n";      
       traverse();
       t=total();
   }
